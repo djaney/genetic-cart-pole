@@ -17,7 +17,7 @@ gen = 0
 while True:
 
     max_score = 0
-    for i in range(100):
+    for i in range(10):
         reward_sum = 0
         ob = env.reset()
         while True:
