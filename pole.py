@@ -16,9 +16,8 @@ iterations = 100
 gen = 0
 while True:
 
-    scores = []
     max_score = 0
-    for i in range(10):
+    for i in range(100):
         reward_sum = 0
         ob = env.reset()
         while True:
@@ -30,9 +29,9 @@ while True:
             action = np.argmax(res)
             ob, reward, done, info = env.step(action)
             reward_sum = reward_sum + reward
-            scores.append(reward_sum)
             if done:
                 break
+            max_score = np.max([max_score, reward_sum])
 
         s.send('rec 0 {} {}'.format(i, reward_sum).encode())
-        print('max score {}'.format(np.max(scores)))
+    print('max score {}'.format(max_score))
